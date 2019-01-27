@@ -5,6 +5,8 @@ from graphene_django.filter import DjangoFilterConnectionField
 from events.schemas import EventNode, InviteeNode
 from users.schemas import UserNode
 
+from users.mutations import RegisterUserMutation
+
 
 class Query(graphene.ObjectType):
     event = relay.Node.Field(EventNode)
@@ -17,4 +19,8 @@ class Query(graphene.ObjectType):
     users = DjangoFilterConnectionField(UserNode)
 
 
-schema = graphene.Schema(query=Query)
+class Mutations(graphene.ObjectType):
+    register_user = RegisterUserMutation.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutations)
