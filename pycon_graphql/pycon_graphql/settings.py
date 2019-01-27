@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Dependencies
     "simplemde",
-    
+    "graphene_django",
+
     # Project apps
     "events",
     "users",
