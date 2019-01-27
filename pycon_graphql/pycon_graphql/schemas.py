@@ -1,14 +1,20 @@
 import graphene
+from graphene import relay
+from graphene_django.filter import DjangoFilterConnectionField
 
+from events.schemas import EventNode, InviteeNode
 from users.schemas import UserNode
-from users.models import User
 
 
 class Query(graphene.ObjectType):
-    all_users = graphene.List(UserNode)
+    event = relay.Node.Field(EventNode)
+    events = DjangoFilterConnectionField(EventNode)
 
-    def resolve_all_users(self, info, **kwargs):
-        return User.objects.all()
+    invitee = relay.Node.Field(InviteeNode)
+    invitees = DjangoFilterConnectionField(InviteeNode)
+
+    user = relay.Node.Field(UserNode)
+    users = DjangoFilterConnectionField(UserNode)
 
 
 schema = graphene.Schema(query=Query)

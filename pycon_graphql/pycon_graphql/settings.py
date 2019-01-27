@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # Dependencies
     "simplemde",
     "graphene_django",
-
+    "django_filters",
     # Project apps
     "events",
     "users",
