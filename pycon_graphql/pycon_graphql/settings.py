@@ -133,5 +133,4 @@ STATICFILES_DIRS = (
     os.path.join(DJANGO_ROOT, 'static'),
 )
 
-
 AUTH_USER_MODEL = "users.User"

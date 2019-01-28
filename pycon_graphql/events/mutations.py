@@ -1,13 +1,10 @@
 import graphene
 from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
 from graphql_relay.node.node import from_global_id
-from django.db import IntegrityError
 
-from users.models import User, validate_user_email_not_exist
-from users.schemas import UserNode
-from events.models import Event, Invitee, validate_user_is_not_already_invited
+from events.models import Event, validate_user_is_not_already_invited
 from events.schemas import InviteeNode, EventNode
+from users.models import User
 
 
 class EnrollUserEventInput(graphene.InputObjectType):
@@ -16,7 +13,6 @@ class EnrollUserEventInput(graphene.InputObjectType):
 
 
 class EnrollUserEventMutation(graphene.Mutation):
-
     class Input:
         event_user_input = EnrollUserEventInput()
 
