@@ -1,6 +1,11 @@
 from graphene import relay
 from graphene_django import DjangoObjectType
-from events.models import Event, Invitee
+from events.models import Event, Invitee, Organization
+
+
+class OrganizationNode(DjangoObjectType):
+    class Meta:
+        model = Organization
 
 
 class EventNode(DjangoObjectType):

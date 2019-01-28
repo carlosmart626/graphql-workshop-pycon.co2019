@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from os.path import abspath, dirname
+
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,10 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # Dependencies
     "simplemde",
     "graphene_django",
     "django_filters",
+
     # Project apps
     "events",
     "users",
@@ -119,6 +124,14 @@ DATE_INPUT_FORMATS = ("%d-%m-%Y", "%Y-%m-%d")
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(DJANGO_ROOT, 'media')
+
+STATICFILES_DIRS = (
+    os.path.join(DJANGO_ROOT, 'static'),
+)
+
 
 AUTH_USER_MODEL = "users.User"

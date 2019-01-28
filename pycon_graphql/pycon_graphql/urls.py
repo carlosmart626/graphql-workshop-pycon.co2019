@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from graphene_django.views import GraphQLView
 
 from pycon_graphql.schemas import schema
@@ -24,3 +28,13 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
 ]
+
+if settings.DEBUG:
+    urlpatterns = [
+        url(r'^media/(?P<path>.*)$', serve,
+            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        ] + staticfiles_urlpatterns() + urlpatterns
+    urlpatterns = [
+        url(r'^static/(?P<path>.*)$', serve,
+            {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
+        ] + staticfiles_urlpatterns() + urlpatterns
