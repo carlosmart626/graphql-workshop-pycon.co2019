@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # Project apps
     "events",
     "users",
+
+    "frontend",
 ]
 
 MIDDLEWARE = [
