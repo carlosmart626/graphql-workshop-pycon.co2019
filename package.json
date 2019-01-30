@@ -29,6 +29,7 @@
     "apollo-link-http": "^1.5.9",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
-    "react-apollo": "^2.4.1"
+    "react-apollo": "^2.4.1",
+    "react-markdown": "^4.0.6"
   }
 }
