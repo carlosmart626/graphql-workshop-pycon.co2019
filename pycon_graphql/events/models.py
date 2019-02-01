@@ -10,6 +10,7 @@ from users.models import User, get_sentinel_user
 class Organization(models.Model):
     title = models.CharField(max_length=200)
     description = SimpleMDEField(max_length=2000, blank=True, null=True)
+    cover_image = models.ImageField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         self.pk = 1
@@ -25,7 +26,9 @@ class Event(models.Model):
     end_hour = models.TimeField()
     place_name = models.CharField(max_length=200)
     address = models.CharField(max_length=250)
-    open_street_map_url = models.URLField()
+    latitude = models.DecimalField(default=0, max_digits=20, decimal_places=12)
+    longitude = models.DecimalField(default=0, max_digits=20, decimal_places=12)
+    zoom = models.PositiveSmallIntegerField(default=18)
     cover_image = models.ImageField()
     description = SimpleMDEField(max_length=2000, blank=True, null=True)
 

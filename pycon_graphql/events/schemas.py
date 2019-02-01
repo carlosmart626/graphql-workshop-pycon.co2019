@@ -7,6 +7,9 @@ class OrganizationNode(DjangoObjectType):
     class Meta:
         model = Organization
 
+    def resolve_cover_image(self, *_):
+        return self.cover_image.url
+
 
 class EventNode(DjangoObjectType):
     class Meta:

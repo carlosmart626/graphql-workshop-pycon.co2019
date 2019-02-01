@@ -1,7 +1,6 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
-import ReactMarkdown from 'react-markdown';
 import OrganizationHeader from './OrganizationHeader';
 import EventsContainer from './EventsContainer';
 
@@ -16,12 +15,16 @@ const GET_EVENT = gql`
             initialHour
             endHour
             description
+            latitude
+            longitude
+            zoom
           }
         }
       }
       organization{
         title
         description
+        coverImage
       }
     }
 `
@@ -37,8 +40,8 @@ const App = () => (
 
       return (
           <div>
-            <OrganizationHeader organization={organization}/>
-            <EventsContainer events={events}/>
+            <OrganizationHeader organization={organization} />
+            <EventsContainer events={events} />
           </div>
       )
     }}
