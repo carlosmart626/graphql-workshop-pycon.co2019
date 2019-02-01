@@ -2,8 +2,10 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
+import OrganizationHeader from './OrganizationHeader';
+import EventsContainer from './EventsContainer';
 
-const GET_DOG = gql`
+const GET_EVENT = gql`
   query{
       events{
         edges{
@@ -17,31 +19,26 @@ const GET_DOG = gql`
           }
         }
       }
+      organization{
+        title
+        description
+      }
     }
 `
 
 const App = () => (
-  <Query query={GET_DOG}>
+  <Query query={GET_EVENT}>
     {({ loading, error, data }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error :(</div>;
 
       const events = data.events.edges || [];
+      const organization = data.organization || null;
 
       return (
           <div>
-          { events.map(({ node }, idx) => (
-            <div key={idx}>
-              {console.log(node)}
-              {console.log("^^node")}
-              <h3>
-                {node.title} <span>{node.eventDay}</span>
-              </h3>
-              <div>
-                <ReactMarkdown source={node.description} />
-              </div>
-            </div>
-          ))}
+            <OrganizationHeader organization={organization}/>
+            <EventsContainer events={events}/>
           </div>
       )
     }}

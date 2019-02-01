@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./pycon_graphql/frontend/src/index.js --output ./pycon_graphql/frontend/static/frontend/main.js",
+    "dev": "webpack --watch --mode development ./pycon_graphql/frontend/src/index.js --output ./pycon_graphql/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./pycon_graphql/frontend/src/index.js --output ./pycon_graphql/frontend/static/frontend/main.js"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "react-apollo": "^2.4.1",
-    "react-markdown": "^4.0.6"
+    "react-markdown": "^4.0.6",
+    "semantic-ui-react": "^0.84.0"
   }
 }
