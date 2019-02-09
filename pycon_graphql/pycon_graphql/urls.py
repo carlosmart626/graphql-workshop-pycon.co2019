@@ -20,14 +20,21 @@ from django.conf import settings
 from django.views.static import serve
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from graphene_django.views import GraphQLView
 
-from pycon_graphql.schemas import schema
+from pycon_graphql.schemas import schema, private_schema
+
+
+class PrivateGraphQLView(LoginRequiredMixin, GraphQLView):
+    pass
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"^graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    url(r"^private-graphql", csrf_exempt(PrivateGraphQLView.as_view(graphiql=True, schema=private_schema))),
     path('', include('frontend.urls')),
 ]
 

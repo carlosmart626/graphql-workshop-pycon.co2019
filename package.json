@@ -27,14 +27,18 @@
     "apollo-cache-inmemory": "^1.4.2",
     "apollo-client": "^2.4.12",
     "apollo-link-http": "^1.5.9",
+    "css-loader": "^2.1.0",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.4.0",
     "moment": "^2.24.0",
+    "node-sass": "^4.11.0",
     "react-apollo": "^2.4.1",
     "react-leaflet": "^2.2.0",
     "react-markdown": "^4.0.6",
     "react-moment": "^0.8.4",
-    "semantic-ui-react": "^0.84.0"
+    "sass-loader": "^7.1.0",
+    "semantic-ui-react": "^0.84.0",
+    "style-loader": "^0.23.1"
   }
 }

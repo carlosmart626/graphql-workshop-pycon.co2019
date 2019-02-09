@@ -16,7 +16,9 @@ class EventModelTestCase(TestCase):
             initial_hour="13:00",
             end_hour="15:00",
             place_name="Universidad Javeriana",
-            open_street_map_url="https://www.openstreetmap.org/#map=19/4.62811/-74.06541",
+            latitude='4.62844',
+            longitude='-74.06508',
+            zoom=19,
         )
         self.platform_users = UserFactory.create_batch(10)
         for user in self.platform_users:

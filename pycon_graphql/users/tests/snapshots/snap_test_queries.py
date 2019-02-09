@@ -9,31 +9,22 @@ snapshots = Snapshot()
 
 snapshots['UserAPITestCase::test_api_users 1'] = {
     'data': {
-        'users': {
-            'edges': [
+        'users': None
+    },
+    'errors': [
+        {
+            'locations': [
                 {
-                    'node': {
-                        'email': 'jhon@doe.com',
-                        'firstName': 'Jhon',
-                        'id': 'VXNlck5vZGU6MQ==',
-                        'lastName': 'Doe',
-                        'username': 'johndoe'
-                    }
+                    'column': 19,
+                    'line': 2
                 }
+            ],
+            'message': "'NoneType' object has no attribute 'user'",
+            'path': [
+                'users'
             ]
         }
-    }
-}
-
-snapshots['UserAPITestCase::test_register_user_mutation 1'] = {
-    'data': {
-        'registerUser': {
-            'user': {
-                'email': 'me@carlosmart.co',
-                'id': 'VXNlck5vZGU6Mg=='
-            }
-        }
-    }
+    ]
 }
 
 snapshots['UserAPITestCase::test_register_user_already_registered_mutation 1'] = {
@@ -74,6 +65,17 @@ snapshots['UserAPITestCase::test_register_user_already_registered_mutation 2'] =
             ]
         }
     ]
+}
+
+snapshots['UserAPITestCase::test_register_user_mutation 1'] = {
+    'data': {
+        'registerUser': {
+            'user': {
+                'email': 'me@carlosmart.co',
+                'id': 'VXNlck5vZGU6Mg=='
+            }
+        }
+    }
 }
 
 snapshots['UserAPITestCase::test_register_user_wrong_email 1'] = {

@@ -1,4 +1,5 @@
 from django.utils import timezone
+from datetime import date
 from graphene.test import Client
 from graphql_relay.node.node import to_global_id
 from snapshottest.django import TestCase
@@ -18,11 +19,13 @@ class EventAPITestCase(TestCase):
             title="Pycon 2019 - GraphQL Workshop",
             description="Descripción del evento",
             invitee_capacity=100,
-            event_day=timezone.now().date(),
+            event_day=date(2019, 2, 10),
             initial_hour="13:00",
             end_hour="15:00",
             place_name="Universidad Javeriana",
-            open_street_map_url="https://www.openstreetmap.org/#map=19/4.62811/-74.06541",
+            latitude='4.62844',
+            longitude='-74.06508',
+            zoom=19,
         )
         self.main_user = User.objects.create(
             first_name="Jhon",

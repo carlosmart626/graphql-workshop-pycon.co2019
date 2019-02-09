@@ -14,7 +14,7 @@ snapshots['EventAPITestCase::test_api_events 1'] = {
                 {
                     'node': {
                         'endHour': '15:00:00',
-                        'eventDay': '2019-01-28',
+                        'eventDay': '2019-02-10',
                         'initialHour': '13:00:00',
                         'title': 'Pycon 2019 - GraphQL Workshop'
                     }
@@ -22,62 +22,6 @@ snapshots['EventAPITestCase::test_api_events 1'] = {
             ]
         }
     }
-}
-
-snapshots['EventAPITestCase::test_enroll_user_mutation 1'] = {
-    'data': {
-        'enrollUserEvent': {
-            'event': {
-                'title': 'Pycon 2019 - GraphQL Workshop'
-            },
-            'invitee': {
-                'user': {
-                    'email': 'jhon@doe.com'
-                }
-            },
-            'ok': True
-        }
-    }
-}
-
-snapshots['EventAPITestCase::test_enroll_user_not_valid_mutation 1'] = {
-    'data': {
-        'enrollUserEvent': None
-    },
-    'errors': [
-        {
-            'locations': [
-                {
-                    'column': 15,
-                    'line': 3
-                }
-            ],
-            'message': "['User with id VXNlck5vZGU6OTk5OQ== does not exist']",
-            'path': [
-                'enrollUserEvent'
-            ]
-        }
-    ]
-}
-
-snapshots['EventAPITestCase::test_enroll_user_not_valid_mutation 2'] = {
-    'data': {
-        'enrollUserEvent': None
-    },
-    'errors': [
-        {
-            'locations': [
-                {
-                    'column': 15,
-                    'line': 3
-                }
-            ],
-            'message': "['Event with id 55d540ea-e708-4322-86e6-000000000000 does not exist']",
-            'path': [
-                'enrollUserEvent'
-            ]
-        }
-    ]
 }
 
 snapshots['EventAPITestCase::test_api_events 2'] = {
@@ -89,10 +33,7 @@ snapshots['EventAPITestCase::test_api_events 2'] = {
     }
 }
 
-snapshots['EventAPITestCase::test_enroll_user_mutation 2'] = {
-    'data': {
-        'enrollUserEvent': None
-    },
+snapshots['EventAPITestCase::test_enroll_user_mutation 1'] = {
     'errors': [
         {
             'locations': [
@@ -101,10 +42,49 @@ snapshots['EventAPITestCase::test_enroll_user_mutation 2'] = {
                     'line': 3
                 }
             ],
-            'message': "['This user is already invited (jhon@doe.com)']",
-            'path': [
-                'enrollUserEvent'
-            ]
+            'message': 'Cannot query field "enrollUserEvent" on type "Mutations".'
+        }
+    ]
+}
+
+snapshots['EventAPITestCase::test_enroll_user_mutation 2'] = {
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 15,
+                    'line': 3
+                }
+            ],
+            'message': 'Cannot query field "enrollUserEvent" on type "Mutations".'
+        }
+    ]
+}
+
+snapshots['EventAPITestCase::test_enroll_user_not_valid_mutation 1'] = {
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 15,
+                    'line': 3
+                }
+            ],
+            'message': 'Cannot query field "enrollUserEvent" on type "Mutations".'
+        }
+    ]
+}
+
+snapshots['EventAPITestCase::test_enroll_user_not_valid_mutation 2'] = {
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 15,
+                    'line': 3
+                }
+            ],
+            'message': 'Cannot query field "enrollUserEvent" on type "Mutations".'
         }
     ]
 }
