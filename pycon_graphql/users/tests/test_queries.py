@@ -16,6 +16,8 @@ class UserAPITestCase(TestCase):
             profile="This is the profile John Doe",
             username="johndoe"
         )
+        self.main_user.set_password("123admin123")
+        self.main_user.save()
         self.client = Client(schema)
 
     def test_api_users(self):
@@ -33,6 +35,30 @@ class UserAPITestCase(TestCase):
                     }
                   }
                 }
+            '''
+        ))
+
+    def test_login_user_mutation(self):
+        self.assertMatchSnapshot(self.client.execute(
+            '''mutation{
+                  loginUser(input: {email: "me@carlosmart.co", password:"123admin123"}){
+                    ok,
+                    user {
+                      id
+                    }
+                  }
+                }
+            '''
+        ))
+
+    def test_logout_user_mutation(self):
+        self.assertMatchSnapshot(self.client.execute(
+            '''
+            mutation{
+              logoutUser(input: {}){
+                ok
+              }
+            }
             '''
         ))
 

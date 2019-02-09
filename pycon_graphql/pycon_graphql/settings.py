@@ -136,3 +136,16 @@ STATICFILES_DIRS = (
 )
 
 AUTH_USER_MODEL = "users.User"
+
+
+GRAPHENE = {
+    'SCHEMA': 'schemas.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

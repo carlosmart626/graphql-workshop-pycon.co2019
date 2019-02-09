@@ -1,12 +1,14 @@
 import graphene
+import graphql_jwt
 from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField
+from graphql_jwt.decorators import login_required
 
 from events.models import Organization
 from events.mutations import EnrollUserEventMutation
 from events.schemas import EventNode, InviteeNode, OrganizationNode
 from users.models import User
-from users.mutations import RegisterUserMutation
+from users.mutations import RegisterUserMutation, LoginUser, LogoutUser
 from users.schemas import UserNode
 
 
@@ -22,6 +24,8 @@ class Query(graphene.ObjectType):
     user = relay.Node.Field(UserNode)
     users = DjangoFilterConnectionField(UserNode)
 
+    me = graphene.Field(UserNode)
+
     def resolve_organization(self, info):
         return Organization.objects.get(pk=1)
 
@@ -32,9 +36,18 @@ class Query(graphene.ObjectType):
         else:
             return User.objects.all()
 
+    @login_required
+    def resolve_me(self, info):
+        return UserNode.get_node(info, info.context.user.id)
+
 
 class Mutations(graphene.ObjectType):
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
     register_user = RegisterUserMutation.Field()
+    login_user = LoginUser.Field()
+    logout_user = LogoutUser.Field()
 
 
 class PrivateMituations(graphene.ObjectType):

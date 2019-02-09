@@ -97,3 +97,32 @@ snapshots['UserAPITestCase::test_register_user_wrong_email 1'] = {
         }
     ]
 }
+
+snapshots['UserAPITestCase::test_login_user_mutation 1'] = {
+    'data': {
+        'loginUser': {
+            'ok': False,
+            'user': None
+        }
+    }
+}
+
+snapshots['UserAPITestCase::test_logout_user_mutation 1'] = {
+    'data': {
+        'logoutUser': None
+    },
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 15,
+                    'line': 3
+                }
+            ],
+            'message': "'NoneType' object has no attribute 'session'",
+            'path': [
+                'logoutUser'
+            ]
+        }
+    ]
+}

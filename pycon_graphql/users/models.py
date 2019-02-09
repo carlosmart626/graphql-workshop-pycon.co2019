@@ -32,3 +32,7 @@ class User(AbstractUser):
     facebook_profile = models.URLField(blank=True, null=True)
     twitter_profile = models.URLField(blank=True, null=True)
     github_profile = models.URLField(blank=True, null=True)
+
+    EMAIL_FIELD = 'email'
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
