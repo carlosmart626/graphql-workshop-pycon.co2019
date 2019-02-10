@@ -1,8 +1,27 @@
+import django_filters
 import graphene
 from graphene import relay
 from graphene_django import DjangoObjectType
 
 from users.models import User
+
+
+class UserFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = User
+        fields = {
+            'username': ['exact', 'contains'],
+            'first_name': ['iexact', 'contains'],
+            'last_name': ['iexact', 'contains'],
+        }
+
+    @property
+    def qs(self):
+        # The query context can be found in self.request.
+        if self.request.user.is_authenticated:
+            return super(UserFilter, self).qs
+        return User.objects.none()
 
 
 class UserNode(DjangoObjectType):

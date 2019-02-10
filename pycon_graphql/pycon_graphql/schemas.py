@@ -9,7 +9,7 @@ from events.mutations import EnrollUserEventMutation
 from events.schemas import EventNode, InviteeNode, OrganizationNode
 from users.models import User
 from users.mutations import RegisterUserMutation, LoginUser, LogoutUser
-from users.schemas import UserNode
+from users.schemas import UserNode, UserFilter
 
 
 class Query(graphene.ObjectType):
@@ -22,19 +22,19 @@ class Query(graphene.ObjectType):
     invitees = DjangoFilterConnectionField(InviteeNode)
 
     user = relay.Node.Field(UserNode)
-    users = DjangoFilterConnectionField(UserNode)
+    users = DjangoFilterConnectionField(UserNode, filterset_class=UserFilter)
 
     me = graphene.Field(UserNode)
 
     def resolve_organization(self, info):
         return Organization.objects.get(pk=1)
 
-    def resolve_users(self, info):
-        # context will reference to the Django request
-        if not info.context.user.is_authenticated():
-            return User.objects.none()
-        else:
-            return User.objects.all()
+    # def resolve_users(self, info):
+    #     # context will reference to the Django request
+    #     if not info.context.user.is_authenticated:
+    #         return User.objects.none()
+    #     else:
+    #         return User.objects.all()
 
     @login_required
     def resolve_me(self, info):
